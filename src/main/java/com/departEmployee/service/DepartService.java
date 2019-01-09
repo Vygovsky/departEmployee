@@ -1,8 +1,8 @@
 package com.departEmployee.service;
 
 import com.departEmployee.model.Department;
-import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
 public interface DepartService {
@@ -16,5 +16,7 @@ public interface DepartService {
     void deleteDepartment(Long id);
 
     Department findByName(String nameDepartment);
+
+    Map<Long, Long> findCountEmplInDepartments();
 
 }

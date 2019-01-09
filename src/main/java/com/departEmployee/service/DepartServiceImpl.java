@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class DepartServiceImpl implements DepartService {
 
-    @Autowired
     private DepartRepository departRepository;
 
     @Autowired
@@ -42,5 +42,10 @@ public class DepartServiceImpl implements DepartService {
     @Override
     public Department findByName(String nameDepartment) {
         return departRepository.findByName(nameDepartment);
+    }
+
+    @Override
+    public Map<Long, Long> findCountEmplInDepartments() {
+        return departRepository.findCountEmplInDepartments();
     }
 }
