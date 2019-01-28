@@ -3,9 +3,11 @@ package com.departEmployee.service;
 import com.departEmployee.model.Department;
 import com.departEmployee.repository.DepartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,10 +15,17 @@ import java.util.Optional;
 public class DepartServiceImpl implements DepartService {
 
     private DepartRepository departRepository;
+    private JdbcTemplate template;
+
+    @Autowired
+    public void setTemplate(JdbcTemplate template) {
+        this.template = template;
+    }
 
     @Autowired
     public void setDepartRepository(DepartRepository departRepository) {
         this.departRepository = departRepository;
+
     }
 
     @Override
@@ -45,7 +54,13 @@ public class DepartServiceImpl implements DepartService {
     }
 
     @Override
+    public Map<Object, Long> findCountEmplInDepartments2() {
+        return departRepository.findCountEmplInDepartments2();
+    }
+
+
+   /* @Override
     public Map<Long, Long> findCountEmplInDepartments() {
         return departRepository.findCountEmplInDepartments();
-    }
+    }*/
 }

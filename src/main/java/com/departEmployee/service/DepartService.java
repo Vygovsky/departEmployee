@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface DepartService {
 
-    Iterable <Department> getAllDepartments();
+    Iterable<Department> getAllDepartments();
 
     Optional<Department> getDepartByIdDepartment(Long id);
 
@@ -17,6 +17,8 @@ public interface DepartService {
 
     Department findByName(String nameDepartment);
 
-    Map<Long, Long> findCountEmplInDepartments();
+  //  Map<Long, Long> findCountEmplInDepartments();
+
+    Map <Object,Long> findCountEmplInDepartments2();
 
 }
