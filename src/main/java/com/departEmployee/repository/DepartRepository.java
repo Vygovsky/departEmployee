@@ -21,5 +21,4 @@ public interface DepartRepository extends CrudRepository<Department, Long> {
             "FROM (SELECT E.ID   E_ID, D.ID   DEPART_ID, D.NAME NAME\n" +
             "FROM DEPARTMENT D LEFT JOIN EMPLOYEES E on D.ID = E.DEPARTMENT_ID) as S2 group by NAME")
     Map<Object, Long> findCountEmplInDepartments2();
-
 }

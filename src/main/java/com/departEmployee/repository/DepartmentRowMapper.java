@@ -66,7 +66,6 @@ class DepartmentExtractor implements ResultSetExtractor<Map<Department, Long>> {
           /*  List<Department> list = new ArrayList<>();
             list.add(department);*/
             }
-
         }
         return countEmployeeInDepart;
     }
