@@ -28,6 +28,7 @@ import java.util.Map;
         return departEmplCount;
     }
 }*/
+
 class DepartmentExtractor implements ResultSetExtractor<Map<Department, Long>> {
 /*    @Override
     public <Map<List<Department>,Long>>

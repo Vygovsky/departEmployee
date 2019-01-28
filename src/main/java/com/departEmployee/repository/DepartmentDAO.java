@@ -37,7 +37,6 @@ public class DepartmentDAO implements ImplDepartmentDAO {
 
     @Override
     public Map<Department, Long> findCountEmplInDepartments() {
-
         return this.template.query(sqlQuery, departmentExtractor);
     }
 }
