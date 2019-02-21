@@ -1,7 +1,7 @@
 package com.departEmployee.controller;
 
 import com.departEmployee.model.Department;
-import com.departEmployee.repository.DepartmentDAO;
+import com.departEmployee.repository.DepartRepository;
 import com.departEmployee.service.DepartService;
 import com.departEmployee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import java.util.Map;
 @RequestMapping("/")
 public class DepartEmplController {
 
-    private DepartService departService;
+    private DepartRepository departRepository;
+
     private EmployeeService employeeService;
-    private DepartmentDAO departmentDAO;
 
     @Autowired
-    public void setDepartService(DepartService departService) {
-        this.departService = departService;
+    public void setDepartRepository(DepartRepository departRepository) {
+        this.departRepository = departRepository;
     }
 
     @Autowired
@@ -33,24 +33,8 @@ public class DepartEmplController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllListDepart(Map<String, Object> model) {
-       Map<Department, Long> countEmplInDepartments = departmentDAO.findCountEmplInDepartments();
-
-       /* Map<Object, Long> countEmplInDepartments3=new HashMap<>();
-        countEmplInDepartments3.put(allDepartments,countEmplInDepartments3);*/
-/*
-        List<Object[]> getAllQuire = (List<Object[]>) departRepository.findCountEmplInDepartments2();
-        for (Object[] objects : getAllQuire) {
-            Department department = (Department) objects[0];
-            Long count = (Long) objects[1];
-            allDepartments.put(department, count);
-        }
-*/
-
-        // Map<Department, Long> getDepartByIdAndName = new HashMap<>();
-
-
-        model.put("allListDepart", countEmplInDepartments);
-        return "/";
+        model.put("allListDepart", departRepository.findEmployeeCountByDepartment());
+        return "depart_list";
     }
 
 }

@@ -1,7 +1,9 @@
 package com.departEmployee.service;
 
 import com.departEmployee.model.Department;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,8 +19,6 @@ public interface DepartService {
 
     Department findByName(String nameDepartment);
 
-  //  Map<Long, Long> findCountEmplInDepartments();
-
-    Map <Object,Long> findCountEmplInDepartments2();
+    Map<Department, Long> findCountEmplInDepartments2();
 
 }

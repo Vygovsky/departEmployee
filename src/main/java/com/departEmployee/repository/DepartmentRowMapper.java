@@ -57,15 +57,7 @@ class DepartmentExtractor implements ResultSetExtractor<Map<Department, Long>> {
             Department department = new Department();
             department.setId(departId);
             department.setName(nameDepart);
-            Long departmentList = countEmployeeInDepart.get(department);
-            if (departmentList == null) {
-                Department newDepart = new Department();
-                newDepart.setId(departId);
-                newDepart.setName(nameDepart);
-                countEmployeeInDepart.put(department,count);
-          /*  List<Department> list = new ArrayList<>();
-            list.add(department);*/
-            }
+            countEmployeeInDepart.put(department, count);
         }
         return countEmployeeInDepart;
     }

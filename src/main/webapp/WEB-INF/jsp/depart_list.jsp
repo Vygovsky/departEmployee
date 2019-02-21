@@ -29,13 +29,13 @@
     <tbody align="center">
     <c:forEach var="depart" items="${allListDepart}">
         <tr>
-            <td>${depart.key.id}</td>
-            <td>${depart.key.name}</td>
-            <td>${depart.value}</td>
-            <td><a href="/employee/listEmployee?departmentId=${depart.key.id}">List</a></td>
-            <td><a href="/employee/create?action=add&currentDepartId=${depart.key.id}">Add User</a></td>
-            <td><a href="/departments?action=edit&id=${depart.key.id}">Edit</a></td>
-            <td><a href="/departments?action=delete&id=${depart.key.id}">Delete</a></td>
+            <td>${depart.department.id}</td>
+            <td>${depart.department.name}</td>
+            <td>${depart.employeeAmount}</td>
+            <td><a href="/employee/listEmployee?departmentId=${depart.department.id}">List</a></td>
+            <td><a href="/employee/create?action=add&currentDepartId=${depart.department.id}">Add User</a></td>
+            <td><a href="/departments?action=edit&id=${depart.department.id}">Edit</a></td>
+            <td><a href="/departments?action=delete&id=${depart.department.id}">Delete</a></td>
         </tr>
     </c:forEach>
     </tbody>

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -54,9 +53,11 @@ public class DepartServiceImpl implements DepartService {
     }
 
     @Override
-    public Map<Object, Long> findCountEmplInDepartments2() {
+    public Map<Department, Long> findCountEmplInDepartments2() {
         return departRepository.findCountEmplInDepartments2();
     }
+
+
 
 
    /* @Override

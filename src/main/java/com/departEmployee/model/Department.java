@@ -13,7 +13,7 @@ public class Department {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             mappedBy = "department")
     private List<Employee> employees;
 
