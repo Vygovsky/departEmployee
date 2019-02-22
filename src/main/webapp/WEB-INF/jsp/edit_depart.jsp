@@ -12,25 +12,21 @@
 </div>
 
 
-<form method="POST" action="${pageContext.request.contextPath}/save">
+<form method="POST" action="/departments/update/${editDepart.get().id}">
 
     <div class="form-style-6">
         <table>
-            <tr>
-                <td><input type="hidden" name="id"
-                           value="${depart.id}"/></td>
-            </tr>
-            <tr>
-                <td>Имя департамента :</td>
-                <td><input type="text" name="name" required value="${depart.name}"/></td>
-                <span style="color:red">${error.name}</span>
 
-                <br/>
-            </tr>
+            <td>Имя департамента :</td>
+            <td><label>
+                <input type="text" name="name"
+                       value="<c:out value="${editDepart.get().name}" />"/>
+            </label><br></td>
+
             <tr>
                 <td><input type="submit" value="Отправить"></td>
                 &nbsp;&nbsp;&nbsp;
-                <td><input type="button" value="Отмена" onclick='location.href="/departments"'></td>
+                <td><input type="button" value="Отмена" onclick='location.href="/"'></td>
             </tr>
         </table>
     </div>

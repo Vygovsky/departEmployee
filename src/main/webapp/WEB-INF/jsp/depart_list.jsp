@@ -9,7 +9,7 @@
 <body>
 <div align="center"><h1>Департаменты</h1></div>
 <div align="center">
-    <td><h1><a href="/departments?action=add">Add Depart</a></h1></td>
+    <td><h1><a href="${pageContext.request.contextPath}/add">Add Depart</a></h1></td>
 </div>
 <table border="1" align="center" id="customers" width="600">
 
@@ -34,8 +34,8 @@
             <td>${depart.employeeAmount}</td>
             <td><a href="/employee/listEmployee?departmentId=${depart.department.id}">List</a></td>
             <td><a href="/employee/create?action=add&currentDepartId=${depart.department.id}">Add User</a></td>
-            <td><a href="/departments?action=edit&id=${depart.department.id}">Edit</a></td>
-            <td><a href="/departments?action=delete&id=${depart.department.id}">Delete</a></td>
+            <td><a href="/departments/edit/${depart.department.id}">Edit</a></td>
+            <td><a href="/departments/delete/${depart.department.id}">Delete</a></td>
         </tr>
     </c:forEach>
     </tbody>
