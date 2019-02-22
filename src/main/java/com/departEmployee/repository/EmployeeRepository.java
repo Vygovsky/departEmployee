@@ -8,6 +8,11 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-    //List<Employee> findByEmployeeAndId(Long teamId);
+
+    Employee findByEmail(String email);
+
+    List<Employee> getEmployeeByDepartment_Id(Long departmentId);
+
+
 
 }

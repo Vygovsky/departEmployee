@@ -6,11 +6,16 @@ import com.departEmployee.service.DepartService;
 import com.departEmployee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+import javax.naming.Binding;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Controller
@@ -19,17 +24,11 @@ public class DepartEmplController {
 
     private DepartRepository departRepository;
 
-    private EmployeeService employeeService;
-
     @Autowired
     public void setDepartRepository(DepartRepository departRepository) {
         this.departRepository = departRepository;
     }
 
-    @Autowired
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getAllListDepart(Map<String, Object> model) {
@@ -37,4 +36,43 @@ public class DepartEmplController {
         return "depart_list";
     }
 
+    @PostMapping(value = "/save")
+    public String saveDepartment(Department department, BindingResult result, Map<String, Object> model) {
+        if (result.hasErrors()) {
+            return "create_depart";
+        }
+        departRepository.save(department);
+        model.put("allListDepart", departRepository.findEmployeeCountByDepartment());
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/add")
+    public String addDepartment(Map<String, Object> model) {
+        model.put("depart", new Department());
+        return "create_depart";
+    }
+
+    @RequestMapping(value = "/departments/delete/{id}", method = RequestMethod.GET)
+    public String deleteDepart(@PathVariable Long id) {
+        departRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/departments/edit/{id}")
+    public String editDepart(@PathVariable("id") Long id, Map<String, Object> model) {
+        Optional<Department> byIdDepart = departRepository.findById(id);
+        model.put("editDepart", byIdDepart);
+        return "edit_depart";
+    }
+
+    @PostMapping(value = "/departments/update/{id}")
+    public String updateDepart(@PathVariable("id") Long id, @Valid Department department, BindingResult result, Map<String, Object> model) {
+        if (result.hasErrors()) {
+            department.setId(id);
+            return "edit_depart";
+        }
+        departRepository.save(department);
+        model.put("allListDepart", departRepository.findEmployeeCountByDepartment());
+        return "depart_list";
+    }
 }

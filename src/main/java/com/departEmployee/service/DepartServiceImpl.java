@@ -14,17 +14,10 @@ import java.util.Optional;
 public class DepartServiceImpl implements DepartService {
 
     private DepartRepository departRepository;
-    private JdbcTemplate template;
-
-    @Autowired
-    public void setTemplate(JdbcTemplate template) {
-        this.template = template;
-    }
 
     @Autowired
     public void setDepartRepository(DepartRepository departRepository) {
         this.departRepository = departRepository;
-
     }
 
     @Override
@@ -56,12 +49,4 @@ public class DepartServiceImpl implements DepartService {
     public Map<Department, Long> findCountEmplInDepartments2() {
         return departRepository.findCountEmplInDepartments2();
     }
-
-
-
-
-   /* @Override
-    public Map<Long, Long> findCountEmplInDepartments() {
-        return departRepository.findCountEmplInDepartments();
-    }*/
 }

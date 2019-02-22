@@ -32,7 +32,7 @@
             <td>${depart.department.id}</td>
             <td>${depart.department.name}</td>
             <td>${depart.employeeAmount}</td>
-            <td><a href="/employee/listEmployee?departmentId=${depart.department.id}">List</a></td>
+            <td><a href="/listEmployee/departmentId/${depart.department.id}">List</a></td>
             <td><a href="/employee/create?action=add&currentDepartId=${depart.department.id}">Add User</a></td>
             <td><a href="/departments/edit/${depart.department.id}">Edit</a></td>
             <td><a href="/departments/delete/${depart.department.id}">Delete</a></td>
