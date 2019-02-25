@@ -20,7 +20,7 @@
 <div align="center">
     <h1>Создать сотрудника</h1>
 </div>
-<form method="POST" action="${pageContext.request.contextPath}/employee/create">
+<form method="POST" action="${pageContext.request.contextPath}/add/employee/">
     <div class="form-style-6">
         <table>
             <tr>

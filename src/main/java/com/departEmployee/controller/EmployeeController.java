@@ -1,11 +1,13 @@
 package com.departEmployee.controller;
 
+import com.departEmployee.model.Department;
+import com.departEmployee.model.Employee;
 import com.departEmployee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -24,4 +26,30 @@ public class EmployeeController {
         return "employee_list";
     }
 
+    @GetMapping(value = "/employee/delete/{id}")
+    public String deleteEmployeeById(@PathVariable Long id) {
+        employeeRepository.deleteById(id);
+        return "redirect:/listEmployee/departmentId/" + id;
+    }
+
+    @GetMapping(value = "/add/employee/")
+    public String addEmployee(@Param("id") Long departments, Map<String, Object> model) {
+        model.put("employee", new Employee());
+        model.put("organizations", employeeRepository.findById(departments));
+        //model.put("departmentId", employeeRepository.findById(departments));
+        return "employee_create";
+    }
+
+    @PostMapping(value = "/save/employee")
+    public String saveEmployee(@PathVariable Long id,
+                               Employee employee,
+                               BindingResult result,
+                               Map<String, Object> model) {
+        if (result.hasErrors()) {
+            return "employee_create";
+        }
+        employeeRepository.save(employee);
+        model.put("employeeList", employeeRepository.getEmployeeByDepartment_Id(id));
+        return "redirect:/listEmployee/departmentId/" + id;
+    }
 }
