@@ -6,7 +6,4 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Map;
 
 public interface ImplDepartmentDAO {
-
-    Map<Department, Long> findCountEmplInDepartments();
-
 }

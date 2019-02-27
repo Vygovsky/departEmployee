@@ -2,9 +2,9 @@ package com.departEmployee.controller;
 
 import com.departEmployee.model.Department;
 import com.departEmployee.model.Employee;
+import com.departEmployee.repository.DepartRepository;
 import com.departEmployee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +14,12 @@ import java.util.Map;
 @Controller
 public class EmployeeController {
     private EmployeeRepository employeeRepository;
+    private DepartRepository departRepository;
+
+    @Autowired
+    public void setDepartRepository(DepartRepository departRepository) {
+        this.departRepository = departRepository;
+    }
 
     @Autowired
     public void setEmployeeRepository(EmployeeRepository employeeRepository) {
@@ -32,11 +38,11 @@ public class EmployeeController {
         return "redirect:/listEmployee/departmentId/" + id;
     }
 
-    @GetMapping(value = "/add/employee/")
-    public String addEmployee(@Param("id") Long departments, Map<String, Object> model) {
+    @GetMapping(value = "/add/employee")
+    public String addEmployee( @PathVariable Long currentDepartId, Map<String, Object> model) {
         model.put("employee", new Employee());
-        model.put("organizations", employeeRepository.findById(departments));
-        //model.put("departmentId", employeeRepository.findById(departments));
+        model.put("departments", departRepository.findAll());
+        model.put("currentDepartId", departRepository.findById(currentDepartId));
         return "employee_create";
     }
 

@@ -20,7 +20,7 @@
 <div align="center">
     <h1>Создать сотрудника</h1>
 </div>
-<form method="POST" action="${pageContext.request.contextPath}/add/employee/">
+<form method="POST" action="${pageContext.request.contextPath}/save/employee">
     <div class="form-style-6">
         <table>
             <tr>
@@ -52,7 +52,7 @@
                 <td>Департамент :</td>
                 <td><label>
 
-                    <select name="organizations">
+                    <select name="departments">
                         <c:forEach var="depart" items="${departments}">
                             <option value="${depart.id}"
                                 ${depart.id == currentDepartId ? 'selected="selected"' : null}>${depart.name}</option>

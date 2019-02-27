@@ -30,10 +30,6 @@ public class DepartmentDAO implements ImplDepartmentDAO {
         this.departmentExtractor = departmentExtractor;
     }
 
-    @Override
-    public Map<Department, Long> findCountEmplInDepartments() {
-        return null;
-    }
 
    /* @Autowired
     public void setDepartmentRowMapper(DepartmentRowMapper departmentRowMapper) {
