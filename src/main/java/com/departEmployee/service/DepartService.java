@@ -21,4 +21,6 @@ public interface DepartService {
 
     Map<Department, Long> findCountEmplInDepartments2();
 
+
+
 }

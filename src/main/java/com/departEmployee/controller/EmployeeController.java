@@ -5,11 +5,13 @@ import com.departEmployee.model.Employee;
 import com.departEmployee.repository.DepartRepository;
 import com.departEmployee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class EmployeeController {
@@ -38,11 +40,19 @@ public class EmployeeController {
         return "redirect:/listEmployee/departmentId/" + id;
     }
 
-    @GetMapping(value = "/add/employee")
-    public String addEmployee( @PathVariable Long currentDepartId, Map<String, Object> model) {
+    @GetMapping(value = "/add/employee/{currentDepartId}")
+    public String addEmployee(@PathVariable("currentDepartId") Long currentDepartId, Map<String, Object> model) {
+        Iterable<Department> departments = departRepository.findAll();
         model.put("employee", new Employee());
-        model.put("departments", departRepository.findAll());
+        model.put("departments", departments);
         model.put("currentDepartId", departRepository.findById(currentDepartId));
+        return "employee_create";
+    }
+
+    @GetMapping(value = "/add/employee")
+    public String addEmployee( Map<String, Object> model) {
+        Iterable<Department> departments = departRepository.findAll();
+        model.put("employee", new Employee());
         return "employee_create";
     }
 

@@ -55,7 +55,7 @@
                     <select name="departments">
                         <c:forEach var="depart" items="${departments}">
                             <option value="${depart.id}"
-                                ${depart.id == currentDepartId ? 'selected="selected"' : null}>${depart.name}</option>
+                                ${depart.get().id == currentDepartId.get().id ? 'selected="selected"' : null}>${depart.get().name}</option>
                         </c:forEach>
                     </select>
                 </label>

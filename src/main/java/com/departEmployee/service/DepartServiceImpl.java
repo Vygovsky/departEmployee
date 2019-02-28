@@ -49,4 +49,5 @@ public class DepartServiceImpl implements DepartService {
     public Map<Department, Long> findCountEmplInDepartments2() {
         return departRepository.findCountEmplInDepartments2();
     }
+
 }
