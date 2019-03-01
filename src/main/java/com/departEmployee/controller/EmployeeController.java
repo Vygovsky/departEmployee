@@ -5,13 +5,12 @@ import com.departEmployee.model.Employee;
 import com.departEmployee.repository.DepartRepository;
 import com.departEmployee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 public class EmployeeController {
@@ -31,6 +30,7 @@ public class EmployeeController {
     @RequestMapping(value = "/listEmployee/departmentId/{id}", method = RequestMethod.GET)
     public String getAllListDepart(@PathVariable Long id, Map<String, Object> model) {
         model.put("employeeList", employeeRepository.getEmployeeByDepartment_Id(id));
+        model.put("departmentId", id);
         return "employee_list";
     }
 
@@ -41,24 +41,17 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/add/employee/{currentDepartId}")
-    public String addEmployee(@PathVariable("currentDepartId") Long currentDepartId, Map<String, Object> model) {
+    public String addEmployee(@PathVariable Long currentDepartId, Map<String, Object> model) {
         Iterable<Department> departments = departRepository.findAll();
         model.put("employee", new Employee());
         model.put("departments", departments);
-        model.put("currentDepartId", departRepository.findById(currentDepartId));
-        return "employee_create";
-    }
-
-    @GetMapping(value = "/add/employee")
-    public String addEmployee( Map<String, Object> model) {
-        Iterable<Department> departments = departRepository.findAll();
-        model.put("employee", new Employee());
+        model.put("currentDepart", departRepository.findById(currentDepartId).map(Department::getId));
         return "employee_create";
     }
 
     @PostMapping(value = "/save/employee")
     public String saveEmployee(@PathVariable Long id,
-                               Employee employee,
+                               @Valid Employee employee,
                                BindingResult result,
                                Map<String, Object> model) {
         if (result.hasErrors()) {

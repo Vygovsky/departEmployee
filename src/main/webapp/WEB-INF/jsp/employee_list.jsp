@@ -70,7 +70,7 @@
     <h1>List users by departments</h1>
 </div>
 <div align="center">
-    <td><h1><a href="${pageContext.request.contextPath}/add/employee">Add User</a>
+    <td><h1><a href="/add/employee/${departmentId}">Add User</a>
         &nbsp;&nbsp;&nbsp;
         <a href="${pageContext.request.contextPath}/">Depart-menu</a></h1></td>
 
@@ -97,7 +97,7 @@
             <td>${employee.birthday}</td>
             <td>${employee.department.name}</td>
 
-            <form action="/add/employee/" method="post">
+            <form action="/add/employee/${departmentId}" method="post">
                 <td><a href="/employee/create?action=edit&id=${employee.id}&currentDepartId=${departmentId}">Edit</a></td>
             </form>
            <%-- <td><a href="/employee/create?action=delete&id=${employee.id}&departmentId=${departmentId}">Delete</a></td>--%>

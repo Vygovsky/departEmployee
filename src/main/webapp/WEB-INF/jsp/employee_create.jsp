@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -20,7 +21,7 @@
 <div align="center">
     <h1>Создать сотрудника</h1>
 </div>
-<form method="POST" action="${pageContext.request.contextPath}/save/employee">
+<form method="POST" action="${pageContext.request.contextPath}/save/employee/${currentDepartId}">
     <div class="form-style-6">
         <table>
             <tr>
@@ -55,7 +56,7 @@
                     <select name="departments">
                         <c:forEach var="depart" items="${departments}">
                             <option value="${depart.id}"
-                                ${depart.get().id == currentDepartId.get().id ? 'selected="selected"' : null}>${depart.get().name}</option>
+                                ${depart.id == currentDepartId ? 'selected="selected"' : null}>${depart.name}</option>
                         </c:forEach>
                     </select>
                 </label>
