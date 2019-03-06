@@ -97,9 +97,8 @@
             <td>${employee.department.id}</td>
 
             <form action="/add/employee/${departmentId}" method="post">
-                <td><a href="/employee/create?action=edit&id=${employee.id}&currentDepartId=${departmentId}">Edit</a></td>
+                <td><a href="/edit/employee/${employee.id}/currentDepartId/${departmentId}">Edit</a></td>
             </form>
-           <%-- <td><a href="/employee/create?action=delete&id=${employee.id}&departmentId=${departmentId}">Delete</a></td>--%>
             <td><a href="/employee/delete/${employee.id}">Delete</a></td>
 
         </tr>

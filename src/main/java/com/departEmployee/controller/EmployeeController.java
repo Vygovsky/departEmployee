@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class EmployeeController {
@@ -60,5 +61,14 @@ public class EmployeeController {
         Employee persistedEmployee = employeeRepository.save(employee);
         model.put("departments", departRepository.findAll());
         return "redirect:/listEmployee/departmentId/" + persistedEmployee.getDepartment().getId();
+    }
+
+    @GetMapping(value = "/edit/employee/{id}/currentDepartId/{id}")
+    public String editEmployee(@PathVariable Long id, Model model) {
+        Iterable<Department> departments = departRepository.findAll();
+        model.addAttribute("employee", employeeRepository.findById(id).map(Employee::getId).get());
+        model.addAttribute("departments", departments);
+        model.addAttribute("currentDepartId", departRepository.findById(id).map(Department::getId).get());
+        return "employee_update";
     }
 }

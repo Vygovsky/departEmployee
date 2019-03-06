@@ -10,7 +10,7 @@
 
 
 <body>
-<form method="post" action="/employee/create?id=${employee.id}&currentDepartId=${currentDepartId}">
+<form method="post" action="/update/employee/">
     <div class="form-style-6">
         <div align="center">
             <h2>Изменить данные сотрудника </h2>
@@ -42,7 +42,7 @@
             </tr>
             <tr>
                 <td>День рождения :</td>
-                <td><input type="date" name="date"
+                <td><input type="date" name="birthday"
                            value="<c:out value="${sessionScope.employee.email}" />${employee.birthday}"/></td>
                 <c:if test="${not empty errors}">
                     <span style="color:red"><c:out value="${sessionScope.errors[\"errorBdMessage\"]}"/></span>
@@ -52,7 +52,7 @@
             <tbody>
             <tr>
                 <td>Департамент :</td>
-                <td><select name="organizations">
+                <td><select name="department">
                     <c:forEach var="depart" items="${departments}">
                         <option value="${depart.id}"
                             ${depart.id == currentDepartId ? 'selected="selected"' : null}>${depart.name}</option>
