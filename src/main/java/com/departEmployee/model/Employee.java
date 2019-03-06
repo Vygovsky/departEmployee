@@ -1,6 +1,12 @@
 package com.departEmployee.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -14,8 +20,9 @@ public class Employee {
 
     private String email;
 
-    @Temporal(TemporalType.DATE)
-    private Date birthday;
+    @NotNull(message = "Date is mandatory")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthday;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", referencedColumnName = "id")
@@ -24,7 +31,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String email, Date birthday, Department department) {
+    public Employee(String name, String email, LocalDate birthday, Department department) {
         this.name = name;
         this.email = email;
         this.birthday = birthday;
@@ -55,11 +62,11 @@ public class Employee {
         this.email = email;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

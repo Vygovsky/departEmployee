@@ -6,6 +6,7 @@ import com.departEmployee.repository.DepartRepository;
 import com.departEmployee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,24 +42,23 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/add/employee/{currentDepartId}")
-    public String addEmployee(@PathVariable Long currentDepartId, Map<String, Object> model) {
+    public String addEmployee(@PathVariable Long currentDepartId, Model model) {
         Iterable<Department> departments = departRepository.findAll();
-        model.put("employee", new Employee());
-        model.put("departments", departments);
-        model.put("currentDepart", departRepository.findById(currentDepartId).map(Department::getId));
+        model.addAttribute("employee", new Employee());
+        model.addAttribute("departments", departments);
+        model.addAttribute("currentDepartId", departRepository.findById(currentDepartId).map(Department::getId).get());
         return "employee_create";
     }
 
     @PostMapping(value = "/save/employee")
-    public String saveEmployee(@PathVariable Long id,
-                               @Valid Employee employee,
+    public String saveEmployee(@Valid Employee employee,
                                BindingResult result,
                                Map<String, Object> model) {
         if (result.hasErrors()) {
             return "employee_create";
         }
-        employeeRepository.save(employee);
-        model.put("employeeList", employeeRepository.getEmployeeByDepartment_Id(id));
-        return "redirect:/listEmployee/departmentId/" + id;
+        Employee persistedEmployee = employeeRepository.save(employee);
+        model.put("departments", departRepository.findAll());
+        return "redirect:/listEmployee/departmentId/" + persistedEmployee.getDepartment().getId();
     }
 }

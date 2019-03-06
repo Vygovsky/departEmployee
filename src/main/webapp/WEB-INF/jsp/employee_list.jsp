@@ -76,7 +76,6 @@
 
 </div>
 <table align="center" id="customers" width="600">
-    <%--<table id="customers">--%>
     <thead>
     <tr>
         <th>#</th>
@@ -95,7 +94,7 @@
             <td>${employee.name}</td>
             <td>${employee.email}</td>
             <td>${employee.birthday}</td>
-            <td>${employee.department.name}</td>
+            <td>${employee.department.id}</td>
 
             <form action="/add/employee/${departmentId}" method="post">
                 <td><a href="/employee/create?action=edit&id=${employee.id}&currentDepartId=${departmentId}">Edit</a></td>
