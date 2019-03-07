@@ -63,12 +63,12 @@ public class EmployeeController {
         return "redirect:/listEmployee/departmentId/" + persistedEmployee.getDepartment().getId();
     }
 
-    @GetMapping(value = "/edit/employee/{id}/currentDepartId/{id}")
+    @GetMapping(value = "/edit/employee/{id}")// запрос на форму эдит
     public String editEmployee(@PathVariable Long id, Model model) {
         Iterable<Department> departments = departRepository.findAll();
-        model.addAttribute("employee", employeeRepository.findById(id).map(Employee::getId).get());
-        model.addAttribute("departments", departments);
-        model.addAttribute("currentDepartId", departRepository.findById(id).map(Department::getId).get());
+        model.addAttribute("employee", employeeRepository.findById(id).get());// пытаюсь найти импл по ид по анологии с департом
+        model.addAttribute("departments", departments);// селект департов
+        model.addAttribute("currentDepartId", departRepository.findById(id).map(Department::getId).get());// пытаюсь найти ид департа в котором он находится
         return "employee_update";
     }
 }

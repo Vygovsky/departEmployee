@@ -52,12 +52,14 @@
             <tbody>
             <tr>
                 <td>Департамент :</td>
-                <td><select name="department">
-                    <c:forEach var="depart" items="${departments}">
-                        <option value="${depart.id}"
-                            ${depart.id == currentDepartId ? 'selected="selected"' : null}>${depart.name}</option>
-                    </c:forEach>
-                </select>
+                <td><label>
+                    <select name="department">
+                        <c:forEach var="depart" items="${departments}">
+                            <option value="${depart.id}"
+                                ${depart.id == currentDepartId ? 'selected="selected"' : null}>${depart.name}</option>
+                        </c:forEach>
+                    </select>
+                </label>
                 </td>
             </tr>
             </tbody>
