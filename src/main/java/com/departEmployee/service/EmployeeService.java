@@ -1,13 +1,12 @@
 package com.departEmployee.service;
 
 import com.departEmployee.model.Employee;
-
 import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeService {
 
-    Iterable <Employee> getAllEmployees();
+    Iterable<Employee> getAllEmployees();
 
     Optional<Employee> getEmployeeById(Long id);
 
@@ -20,4 +19,6 @@ public interface EmployeeService {
     void deleteAllEmplForDepart(Long departID);
 
     List<Employee> employeeByDepartmentId(Long departmentId);
+
+
 }

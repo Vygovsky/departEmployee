@@ -10,15 +10,15 @@
 
 
 <body>
-<form method="post" action="/update/employee/">
+<form method="post" action="/update/employee">
     <div class="form-style-6">
         <div align="center">
             <h2>Изменить данные сотрудника </h2>
         </div>
         <table>
             <tr>
-                <td>Номер сотрудника :</td>
-                <td><input type="text" value="${employee.id}" readonly="readonly"/></td>
+                <!--<td>Номер сотрудника :</td> -->
+                <td><input type="text" name="id" value="${employee.id}" hidden/></td>
             </tr>
             <br/>
             <tr>

@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -94,7 +93,7 @@
             <td>${employee.name}</td>
             <td>${employee.email}</td>
             <td>${employee.birthday}</td>
-            <td>${employee.department.id}</td>
+            <td>${employee.department.name}</td>
 
             <form action="/add/employee/${departmentId}" method="post">
                 <td><a href="/edit/employee/${employee.id}">Edit</a></td>
