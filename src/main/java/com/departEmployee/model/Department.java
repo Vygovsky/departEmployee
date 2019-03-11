@@ -1,6 +1,9 @@
 package com.departEmployee.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -9,7 +12,8 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotEmpty(message = "Date is mandatory")
+    @Size(min = 3, max=20)
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL,

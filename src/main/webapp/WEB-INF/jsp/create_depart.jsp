@@ -1,11 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Create depart</title>
     <link href="<c:url value="/css/styles.css"/>" rel="stylesheet" type="text/css">
-
+    <style>
+        .error{
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
 <body>
 <div align="center">
     <h1>Создать департамент</h1>
@@ -23,7 +30,10 @@
             <tr>
                 <td>Имя департамента :</td>
                 <td><input type="text" name="name" required value="${depart.name}"/></td>
-                <span style="color:red">${error.name}</span>
+            <%--    <span style="color:red">${error.name}</span>--%>
+                <td>
+                    <form:errors name="name" cssClass="error"/>
+                </td>
 
                 <br/>
             </tr>

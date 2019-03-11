@@ -68,7 +68,7 @@
                 <td><input type="submit" value="Отправить"></td>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <td><input type="button" value="Отмена"
-                           onclick='location.href="/employee/create?departmentId=${currentDepartId}"'></td>
+                           onclick='location.href="/listEmployee/departmentId/${currentDepartId}"'></td>
         </table>
     </div>
 </form>
